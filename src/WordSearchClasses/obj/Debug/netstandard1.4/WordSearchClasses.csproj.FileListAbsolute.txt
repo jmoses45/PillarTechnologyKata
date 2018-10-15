@@ -1,0 +1,7 @@
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\src\WordSearchClasses\bin\Debug\netstandard1.4\WordSearchClasses.deps.json
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\src\WordSearchClasses\bin\Debug\netstandard1.4\WordSearchClasses.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\src\WordSearchClasses\bin\Debug\netstandard1.4\WordSearchClasses.pdb
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\src\WordSearchClasses\obj\Debug\netstandard1.4\WordSearchClasses.csproj.CoreCompileInputs.cache
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\src\WordSearchClasses\obj\Debug\netstandard1.4\WordSearchClasses.AssemblyInfo.cs
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\src\WordSearchClasses\obj\Debug\netstandard1.4\WordSearchClasses.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\src\WordSearchClasses\obj\Debug\netstandard1.4\WordSearchClasses.pdb

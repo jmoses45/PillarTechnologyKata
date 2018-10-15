@@ -1,0 +1,17 @@
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\WordSearchTest.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\WordSearchTest.pdb
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\WordSearchConsole.exe
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\WordSearchConsole.pdb
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\WordSearchConsole.exe.config
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\obj\Debug\WordSearchTest.csprojAssemblyReference.cache
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\obj\Debug\WordSearchTest.csproj.CoreCompileInputs.cache
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\obj\Debug\WordSearchTest.csproj.CopyComplete
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\obj\Debug\WordSearchTest.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\obj\Debug\WordSearchTest.pdb
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
