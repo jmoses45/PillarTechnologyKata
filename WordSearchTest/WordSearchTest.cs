@@ -93,22 +93,22 @@ namespace WordSearchTest
 		}
 
 		[TestMethod]
-		public void WhenWordSearchIsPassedAStringLetterItWillReturnAListOfPointsOfAllOccurrancesOfThatLetterInTheSearchField()
+		public void WhenWordSearchIsPassedAStringLetterItWillReturnAListOfPositionsOfAllOccurrancesOfThatLetterInTheSearchField()
 		{
 			wordSearch.SetWordSearchPuzzle(testPuzzle);
 
-			List<Point> actualPoints = wordSearch.GetAllLocationsOfLetter("E");
+			List<Point> actualPoints = wordSearch.GetAllPositionsOfLetter("E");
 			List<Point> expectedPoints = new List<Point>()
 			{
 				new Point(0, 0),
-				new Point(1, 5),
-				new Point(1, 13),
-				new Point(2, 7),
-				new Point(4, 3),
-				new Point(4, 14),
-				new Point(11, 2),
-				new Point(12, 14),
-				new Point(14, 4)
+				new Point(5, 1),
+				new Point(13, 1),
+				new Point(7, 2),
+				new Point(3, 4),
+				new Point(14, 4),
+				new Point(2, 11),
+				new Point(14, 12),
+				new Point(4, 14)
 			};
 			
 			if (expectedPoints.Count != actualPoints.Count)
@@ -119,6 +119,17 @@ namespace WordSearchTest
 				Assert.AreEqual(expectedPoints[i].X, actualPoints[i].X);
 				Assert.AreEqual(expectedPoints[i].Y, actualPoints[i].Y);
 			}
+		}
+
+		[TestMethod]
+		public void WhenWordSearchIsPassALetterPositionItReturnsTheEightNeighboringLetters()
+		{
+			wordSearch.SetWordSearchPuzzle(testPuzzle);
+
+			List<string> actualNeighbors = wordSearch.GetNeighboringLetters(new Point(0, 0));
+			List<string> expectedNeighbors = new List<string> { string.Empty, string.Empty, string.Empty, string.Empty, "E", "R", string.Empty, "F", "K" };
+
+			CollectionAssert.AreEqual(expectedNeighbors, actualNeighbors);
 		}
 	}
 }
