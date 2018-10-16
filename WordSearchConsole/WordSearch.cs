@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
 
@@ -7,20 +8,29 @@ namespace WordSearchConsole
 	public class WordSearch
 	{
 		private string mSanitizedPuzzleInput = String.Empty;
-		private WordSearchPuzzle mWordSearchPuzzle;
+		private WordSearchPuzzle mWordSearchPuzzle = null;
 
 		public WordSearchPuzzle wordSearchPuzzle { get { return mWordSearchPuzzle; } set{ mWordSearchPuzzle = value; } }
-
-		public void SetWordSearchPuzzle(string puzzleInput)
-		{
-			//Sanitize Input
-			puzzleInput = SanitizePuzzleInput(puzzleInput);
-
-			mWordSearchPuzzle = new WordSearchPuzzle();
-			mWordSearchPuzzle.searchField = GetSearchField(puzzleInput);
-			mWordSearchPuzzle.searchWords = GetSearchWords(puzzleInput);
-		}
 	
+		public List<Point> GetAllLocationsOfLetter(string letter)
+		{
+			List<Point> result = new List<Point>();
+
+			if (mWordSearchPuzzle != null)
+			{
+				for (int i = 0; i < mWordSearchPuzzle.searchField.Length; i++)
+				{
+					for (int j = 0; j < mWordSearchPuzzle.searchField[i].Length; j++)
+					{
+						if (mWordSearchPuzzle.searchField[i][j] == letter)
+							result.Add(new Point(i, j));
+					}
+				}
+			}
+
+			return result;
+		}
+
 		public string[][] GetSearchField(string puzzleInput)
 		{
 			//Sanitize Input
@@ -75,9 +85,19 @@ namespace WordSearchConsole
 
 			return mSanitizedPuzzleInput;
 		}
+
+		public void SetWordSearchPuzzle(string puzzleInput)
+		{
+			//Sanitize Input
+			puzzleInput = SanitizePuzzleInput(puzzleInput);
+
+			mWordSearchPuzzle = new WordSearchPuzzle();
+			mWordSearchPuzzle.searchField = GetSearchField(puzzleInput);
+			mWordSearchPuzzle.searchWords = GetSearchWords(puzzleInput);
+		}
 	}
 
-	public struct WordSearchPuzzle
+	public class WordSearchPuzzle
 	{
 		public string[] searchWords;
 		public string[][] searchField;

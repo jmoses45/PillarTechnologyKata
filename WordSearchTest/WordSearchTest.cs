@@ -1,4 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using System.Drawing;
 using WordSearchConsole;
 
 namespace WordSearchTest
@@ -73,7 +75,7 @@ namespace WordSearchTest
 		}
 
 		[TestMethod]
-		public void WhenWordSearchIsPassedAStringPuzzleInputItWillSetItsWordSearchPuzzleMemberVariableStruct()
+		public void WhenWordSearchIsPassedAStringPuzzleInputItWillSetItsWordSearchPuzzleMemberVariable()
 		{
 			WordSearchPuzzle expectedWordSearchPuzzle = new WordSearchPuzzle();
 			expectedWordSearchPuzzle.searchField = expectedSearchField;
@@ -88,6 +90,35 @@ namespace WordSearchTest
 				CollectionAssert.AreEqual(expectedWordSearchPuzzle.searchField[i], wordSearch.wordSearchPuzzle.searchField[i]);
 
 			CollectionAssert.AreEqual(expectedWordSearchPuzzle.searchWords, wordSearch.wordSearchPuzzle.searchWords);
+		}
+
+		[TestMethod]
+		public void WhenWordSearchIsPassedAStringLetterItWillReturnAListOfPointsOfAllOccurrancesOfThatLetterInTheSearchField()
+		{
+			wordSearch.SetWordSearchPuzzle(testPuzzle);
+
+			List<Point> actualPoints = wordSearch.GetAllLocationsOfLetter("E");
+			List<Point> expectedPoints = new List<Point>()
+			{
+				new Point(0, 0),
+				new Point(1, 5),
+				new Point(1, 13),
+				new Point(2, 7),
+				new Point(4, 3),
+				new Point(4, 14),
+				new Point(11, 2),
+				new Point(12, 14),
+				new Point(14, 4)
+			};
+			
+			if (expectedPoints.Count != actualPoints.Count)
+				Assert.Fail();
+
+			for (int i = 0; i < expectedPoints.Count; i++)
+			{
+				Assert.AreEqual(expectedPoints[i].X, actualPoints[i].X);
+				Assert.AreEqual(expectedPoints[i].Y, actualPoints[i].Y);
+			}
 		}
 	}
 }
