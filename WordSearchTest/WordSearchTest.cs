@@ -7,7 +7,7 @@ namespace WordSearchTest
 	public class WordSearchTest
 	{
 		string testPuzzle = @"GARDEN,STRIKE,KITTENS,TRUCK,CLICK
-							  E,R,F,Q,K,I,Q,K,Y,Z,W,K,O,L,S 
+							  E,R,F,Q,K,I,Q,K,Y,Z,W,K,O,L,S
 							  F,K,I,C,T,E,I,F,Q,J,Y,I,J,E,S
 							  L,T,I,C,F,T,N,E,D,R,A,G,Q,I,Y
 							  D,L,V,R,T,H,T,Q,S,M,Y,G,B,U,M
@@ -28,9 +28,9 @@ namespace WordSearchTest
 		[TestMethod]
 		public void WhenWordSearchIsPassedAStringPuzzleInputItReturnsAListOfStringSearchWords()
 		{
-			string[] searchWords = { "GARDEN", "STRIKE", "KITTENS", "TRUCK", "CLICK" };
+			string[] expectedSearchWords = { "GARDEN", "STRIKE", "KITTENS", "TRUCK", "CLICK" };
 
-			CollectionAssert.AreEqual(searchWords, wordSearch.GetSearchWords(testPuzzle));
+			CollectionAssert.AreEqual(expectedSearchWords, wordSearch.GetSearchWords(testPuzzle));
 		}
 
 		[TestMethod]
@@ -64,6 +64,14 @@ namespace WordSearchTest
 
 			for (int i = 0; i < expectedSearchField.Length; i++)
 				CollectionAssert.AreEqual(expectedSearchField[i],actualSearchField[i]);
+		}
+
+		[TestMethod]
+		public void WhenWordSearchIsPassedAStringPuzzleInputItReturnsASanitizedVersionOfThePuzzleInput()
+		{
+			string expectedSanitizedInput = "THIS,IS,A,PUZZLE\nINPUT,TEST,STRING";
+
+			Assert.AreEqual(expectedSanitizedInput, wordSearch.SanitizePuzzleInput("This, IS, A, PUZZLE\n INPUT, 7 TEST 3, STRING."));
 		}
 	}
 }

@@ -12,7 +12,7 @@ namespace WordSearchConsole
 		public string[][] GetSearchField(string puzzleInput)
 		{
 			//Sanitize Input - Will be moved to a sanitize input puzzle function later
-			puzzleInput = Regex.Replace(puzzleInput, @"[^A-Z\n,]", String.Empty);
+			puzzleInput = SanitizePuzzleInput(puzzleInput);
 			
 			//Split input into lines by \n
 			string[] lines = puzzleInput.Split('\n');
@@ -40,15 +40,25 @@ namespace WordSearchConsole
 
 		public string[] GetSearchWords(string puzzleInput)
 		{
-			//Get a substring of the puzzle input string consisting of the first line of 
-			//character minus the \n character
-			string firstLineSubstring = puzzleInput.Substring(0, puzzleInput.IndexOf('\n') - 1);
+			//Sanitize Input - Will be moved to a sanitize input puzzle function later
+			puzzleInput = SanitizePuzzleInput(puzzleInput);
+
+			//Get a substring of the puzzle input string consisting of the first line of characters
+			string firstLineSubstring = puzzleInput.Substring(0, puzzleInput.IndexOf('\n'));
 
 			//Split the substring by commas to get an array of search words
 			string[] result = firstLineSubstring.Split(',');
 			
 			//return the array of search words.
 			return result;
+		}
+
+		public string SanitizePuzzleInput(string puzzleInput)
+		{
+			puzzleInput = puzzleInput.ToUpper();
+			puzzleInput = Regex.Replace(puzzleInput, @"[^A-Z\n,]", String.Empty);
+
+			return puzzleInput;
 		}
 	}
 }
