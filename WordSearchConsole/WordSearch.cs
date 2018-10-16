@@ -1,19 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Drawing;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace WordSearchConsole
 {
 	public class WordSearch
 	{
+		private string mSanitizedPuzzleInput = String.Empty;
+		private WordSearchPuzzle mWordSearchPuzzle;
+
+		public WordSearchPuzzle wordSearchPuzzle { get { return mWordSearchPuzzle; } set{ mWordSearchPuzzle = value; } }
+
+		public void SetWordSearchPuzzle(string puzzleInput)
+		{
+			//Sanitize Input
+			puzzleInput = SanitizePuzzleInput(puzzleInput);
+
+			mWordSearchPuzzle = new WordSearchPuzzle();
+			mWordSearchPuzzle.searchField = GetSearchField(puzzleInput);
+			mWordSearchPuzzle.searchWords = GetSearchWords(puzzleInput);
+		}
+	
 		public string[][] GetSearchField(string puzzleInput)
 		{
-			//Sanitize Input - Will be moved to a sanitize input puzzle function later
+			//Sanitize Input
 			puzzleInput = SanitizePuzzleInput(puzzleInput);
-			
+
 			//Split input into lines by \n
 			string[] lines = puzzleInput.Split('\n');
 
@@ -40,7 +52,7 @@ namespace WordSearchConsole
 
 		public string[] GetSearchWords(string puzzleInput)
 		{
-			//Sanitize Input - Will be moved to a sanitize input puzzle function later
+			//Sanitize Input
 			puzzleInput = SanitizePuzzleInput(puzzleInput);
 
 			//Get a substring of the puzzle input string consisting of the first line of characters
@@ -55,10 +67,19 @@ namespace WordSearchConsole
 
 		public string SanitizePuzzleInput(string puzzleInput)
 		{
-			puzzleInput = puzzleInput.ToUpper();
-			puzzleInput = Regex.Replace(puzzleInput, @"[^A-Z\n,]", String.Empty);
+			if (mSanitizedPuzzleInput == String.Empty)
+			{
+				puzzleInput = puzzleInput.ToUpper();
+				mSanitizedPuzzleInput = Regex.Replace(puzzleInput, @"[^A-Z\n,]", String.Empty);
+			}
 
-			return puzzleInput;
+			return mSanitizedPuzzleInput;
 		}
+	}
+
+	public struct WordSearchPuzzle
+	{
+		public string[] searchWords;
+		public string[][] searchField;
 	}
 }
