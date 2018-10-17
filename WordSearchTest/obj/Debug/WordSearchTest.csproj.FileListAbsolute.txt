@@ -15,3 +15,6 @@ C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\obj\Debug\Word
 C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\lrg.txt
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\med.txt
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchTest\bin\Debug\sml.txt

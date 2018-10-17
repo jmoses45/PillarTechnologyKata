@@ -8,6 +8,7 @@ namespace WordSearch
 	{
 		static WordSearchConsole wordSearchConsole;
 
+		[STAThread]
 		static void Main(string[] args)
 		{
 			wordSearchConsole = new WordSearchConsole();
