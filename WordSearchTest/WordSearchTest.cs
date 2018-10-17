@@ -46,6 +46,12 @@ namespace WordSearchTest
 
 		WordSearch wordSearch = new WordSearch();
 
+		[TestInitialize]
+		public void Initialize()
+		{
+			wordSearch.SetWordSearchPuzzle(testPuzzle);
+		}
+
 		[TestMethod]
 		public void WhenWordSearchIsPassedAStringPuzzleInputItReturnsAListOfStringSearchWords()
 		{
@@ -57,7 +63,7 @@ namespace WordSearchTest
 		{
 			string[][] actualSearchField = wordSearch.GetSearchField(testPuzzle);
 
-			//AreEqual will not work on multi-dimensional arrays must loop over arrays and compare them individually.
+			//AreEqual will not work on jagged arrays must loop over arrays and compare them individually.
 			//First simple check on length to avoid array overruns.
 			if (expectedSearchField.Length != actualSearchField.Length)
 				Assert.Fail();
@@ -71,7 +77,7 @@ namespace WordSearchTest
 		{
 			string expectedSanitizedInput = "THIS,IS,A,PUZZLE\nINPUT,TEST,STRING";
 
-			Assert.AreEqual(expectedSanitizedInput, wordSearch.SanitizePuzzleInput("This, IS, A, PUZZLE\n INPUT, 7 TEST 3, STRING."));
+			Assert.AreEqual(expectedSanitizedInput, new WordSearch().SanitizePuzzleInput("This, IS, A, PUZZLE\n INPUT, 7 TEST 3, STRING."));
 		}
 
 		[TestMethod]
@@ -80,8 +86,6 @@ namespace WordSearchTest
 			WordSearchPuzzle expectedWordSearchPuzzle = new WordSearchPuzzle();
 			expectedWordSearchPuzzle.searchField = expectedSearchField;
 			expectedWordSearchPuzzle.searchWords = expectedSearchWords;
-
-			wordSearch.SetWordSearchPuzzle(testPuzzle);
 
 			if (expectedWordSearchPuzzle.searchField.Length != wordSearch.wordSearchPuzzle.searchField.Length)
 				Assert.Fail();
@@ -95,8 +99,6 @@ namespace WordSearchTest
 		[TestMethod]
 		public void WhenWordSearchIsPassedAStringLetterItWillReturnAListOfPositionsOfAllOccurrancesOfThatLetterInTheSearchField()
 		{
-			wordSearch.SetWordSearchPuzzle(testPuzzle);
-
 			List<Point> actualPoints = wordSearch.GetAllPositionsOfLetter("E");
 			List<Point> expectedPoints = new List<Point>()
 			{
@@ -110,26 +112,58 @@ namespace WordSearchTest
 				new Point(14, 12),
 				new Point(4, 14)
 			};
-			
+
 			if (expectedPoints.Count != actualPoints.Count)
 				Assert.Fail();
 
 			for (int i = 0; i < expectedPoints.Count; i++)
 			{
-				Assert.AreEqual(expectedPoints[i].X, actualPoints[i].X);
-				Assert.AreEqual(expectedPoints[i].Y, actualPoints[i].Y);
+				Assert.AreEqual(expectedPoints[i], actualPoints[i]);
 			}
 		}
 
 		[TestMethod]
-		public void WhenWordSearchIsPassALetterPositionItReturnsTheEightNeighboringLetters()
+		public void WhenWordSearchIsPassedALetterPositionItReturnsNineNeighborLetters()
 		{
-			wordSearch.SetWordSearchPuzzle(testPuzzle);
-
-			List<string> actualNeighbors = wordSearch.GetNeighboringLetters(new Point(0, 0));
-			List<string> expectedNeighbors = new List<string> { string.Empty, string.Empty, string.Empty, string.Empty, "E", "R", string.Empty, "F", "K" };
+			List<NeighborLetter> actualNeighbors = wordSearch.GetNeighboringLetters(new Point(0, 0));
+			List<NeighborLetter> expectedNeighbors = new List<NeighborLetter>()
+			{
+				new NeighborLetter(string.Empty, new Point(-1, -1)),
+				new NeighborLetter(string.Empty, new Point(0, -1)),
+				new NeighborLetter(string.Empty, new Point(1, -1)),
+				new NeighborLetter(string.Empty, new Point(-1, 0)),
+				new NeighborLetter("E", new Point(0, 0)),
+				new NeighborLetter("R", new Point(1, 0)),
+				new NeighborLetter(string.Empty, new Point(-1, 1)),
+				new NeighborLetter("F", new Point(0, 1)),
+				new NeighborLetter("K", new Point(1, 1))
+			};
 
 			CollectionAssert.AreEqual(expectedNeighbors, actualNeighbors);
+		}
+
+		[TestMethod]
+		public void WhenWordSearchIsPassedAWordToFindItWillReturnAListOfPositionsForThatWord()
+		{
+			List<Point> actualPositions = wordSearch.FindWordPositions("KITTENS");
+			List<Point> expectedPositions = new List<Point>()
+			{
+				new Point(7, 0),
+				new Point(6, 1),
+				new Point(5, 2),
+				new Point(4, 3),
+				new Point(3, 4),
+				new Point(2, 5),
+				new Point(1, 6)
+			};
+
+			if (expectedPositions.Count != actualPositions.Count)
+				Assert.Fail();
+
+			for (int i = 0; i < expectedPositions.Count; i++)
+			{
+				Assert.AreEqual(expectedPositions[i], actualPositions[i]);
+			}
 		}
 	}
 }

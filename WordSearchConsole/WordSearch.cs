@@ -12,6 +12,29 @@ namespace WordSearchConsole
 
 		public WordSearchPuzzle wordSearchPuzzle { get { return mWordSearchPuzzle; } set{ mWordSearchPuzzle = value; } }
 
+		public List<Point> FindWordPositions(string word)
+		{
+			List<Point> result = new List<Point>();
+
+			//Confirm word is not empty
+			if (word != string.Empty)
+			{
+				List<Point> startPositions = GetAllPositionsOfLetter(word[0].ToString());
+
+				//Loop over start positions
+				for (int i = 0; i < startPositions.Count; i++)
+				{
+					//Start recursive function looking for whole word.
+					result = FindConnectingLetter(word, 0, startPositions[i], 4);
+
+					if (result.Count > 0)
+						break;
+				}
+			}
+
+			return result;
+		}
+
 		public List<Point> GetAllPositionsOfLetter(string letter)
 		{
 			List<Point> result = new List<Point>();
@@ -31,23 +54,28 @@ namespace WordSearchConsole
 			return result;
 		}
 
-		public List<string> GetNeighboringLetters(Point position)
+		public List<NeighborLetter> GetNeighboringLetters(Point position)
 		{
-			//Initialize an empty array
-			List<string> result = new List<string>();
+			List<NeighborLetter> result = new List<NeighborLetter>();
 
-			Point neighborPosition;
+			NeighborLetter neighborLetter;
 
 			//Loop over neighboring positions
 			for (int i = -1; i < 2; i++)
 			{
 				for (int j = -1; j < 2; j++)
 				{
-					//Find global position
-					neighborPosition = new Point(position.X + j, position.Y + i);
+					//Create a new NeighborLetter object and set global position and letter.
+					neighborLetter = new NeighborLetter();
 
-					//Get letter of Global position
-					result.Add(GetLetterAtPosiiont(neighborPosition));
+					//Find global position and add to neighborLetter
+					neighborLetter.position = new Point(position.X + j, position.Y + i);
+
+					//Get letter of Global position and add to neighborLetter
+					neighborLetter.letter = GetLetterAtPosition(neighborLetter.position);
+
+					//Add to result
+					result.Add(neighborLetter);
 				}
 			}
 
@@ -87,6 +115,7 @@ namespace WordSearchConsole
 			return result;
 		}
 
+		//Function to clean up any odd character in the puzzle input.
 		public string SanitizePuzzleInput(string puzzleInput)
 		{
 			if (mSanitizedPuzzleInput == String.Empty)
@@ -98,6 +127,7 @@ namespace WordSearchConsole
 			return mSanitizedPuzzleInput;
 		}
 
+		//Set the puzzle input on the word search object so it does not need to be passed in multiple times.
 		public void SetWordSearchPuzzle(string puzzleInput)
 		{
 			//Sanitize Input
@@ -108,7 +138,52 @@ namespace WordSearchConsole
 			mWordSearchPuzzle.searchWords = GetSearchWords(puzzleInput);
 		}
 
-		private string GetLetterAtPosiiont(Point position)
+		//Recursive function to check letter connections
+		//previousNeighborIndex - An int representing the neighbor that was the previous letter in the word.
+		private List<Point> FindConnectingLetter(string word, int wordIndex, Point position, int previousNeighborIndex)
+		{
+			List<Point> result = new List<Point>();
+
+			//Increment word index
+			wordIndex++;
+
+			//Check for end of word
+			if (wordIndex == word.Length)
+			{
+				result.Add(position);
+			}
+			else
+			{
+				List<NeighborLetter> neighbors = GetNeighboringLetters(position);
+				List<Point> neighborResult;
+
+				for (int i = 0; i < neighbors.Count; i++)
+				{
+					//Skip over itself and the previous neighbor in the list.
+					if ((i == 4) || i == previousNeighborIndex)
+						continue;
+
+					//If next letter in word is found
+					if (neighbors[i].letter == word[wordIndex].ToString())
+					{
+						//Call function again with that letter
+						neighborResult = FindConnectingLetter(word, wordIndex, neighbors[i].position, 4 + (4 - i));
+
+						//If neighbor returns a count, it means the end was found. Add this letters position and return result.
+						if (neighborResult.Count > 0)
+						{
+							result.Add(position);
+							result.AddRange(neighborResult);
+							break;
+						}
+					}
+				}
+			}
+
+			return result;
+		}
+
+		private string GetLetterAtPosition(Point position)
 		{
 			//Default result to empty string.
 			string result = string.Empty;
@@ -126,9 +201,53 @@ namespace WordSearchConsole
 		}
 	}
 
+	//Class to hold neighbor data
+	public class NeighborLetter
+	{
+		private string mLetter;
+		private Point mPosition;
+
+		public string letter { get { return mLetter; } set { mLetter = value; } }
+		public Point position { get { return mPosition; } set { mPosition = value; } }
+
+		public NeighborLetter()
+		{
+
+		}
+
+		public NeighborLetter(string letter, Point position)
+		{
+			this.letter = letter;
+			this.position = position;
+		}
+
+		public override bool Equals(object obj)
+		{
+			bool result = false;
+
+			NeighborLetter neighborLetter = obj as NeighborLetter;
+
+			if ((neighborLetter != null) &&
+				this.letter.Equals(neighborLetter.letter) &&
+				this.position.Equals(neighborLetter.position))
+			{
+				result = true;
+			}
+
+			return result;
+		}
+
+		public override int GetHashCode()
+		{
+			return base.GetHashCode();
+		}
+	}
+
+	//Class to hold word search data
 	public class WordSearchPuzzle
 	{
 		public string[] searchWords;
 		public string[][] searchField;
 	}
+
 }

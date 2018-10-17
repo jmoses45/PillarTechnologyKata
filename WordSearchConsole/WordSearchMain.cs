@@ -8,7 +8,7 @@ namespace WordSearchConsole
 	{
 		static void Main(string[] args)
 		{
-
+			
 		}
 	}
 }
