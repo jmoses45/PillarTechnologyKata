@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2016
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSearchTest", "WordSearchTest\WordSearchTest.csproj", "{68C71F7A-EA3A-4238-ACFC-FF98EAA28B70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSearchConsole", "WordSearchConsole\WordSearchConsole.csproj", "{F2269E81-6E0E-4723-9F32-D52BAFB6D67C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordSearch", "WordSearchConsole\WordSearch.csproj", "{F2269E81-6E0E-4723-9F32-D52BAFB6D67C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

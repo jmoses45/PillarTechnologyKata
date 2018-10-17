@@ -1,0 +1,7 @@
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchConsole\bin\Debug\WordSearchConsole.exe.config
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchConsole\bin\Debug\WordSearchConsole.exe
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchConsole\bin\Debug\WordSearchConsole.pdb
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchConsole\obj\Debug\WordSearch.csprojAssemblyReference.cache
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchConsole\obj\Debug\WordSearch.csproj.CoreCompileInputs.cache
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchConsole\obj\Debug\WordSearchConsole.exe
+C:\Users\jmose\OneDrive\Desktop\GIT\WordSearchKata\WordSearchConsole\obj\Debug\WordSearchConsole.pdb

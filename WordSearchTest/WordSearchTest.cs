@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Drawing;
-using WordSearchConsole;
+using WordSearch;
 
 namespace WordSearchTest
 {
@@ -44,7 +44,7 @@ namespace WordSearchTest
 									  X,C,B,J,Y,G,S,C,V,N,N,F,C,Y,T
 									  G,I,Q,U,E,M,N,F,T,K,X,V,V,S,T";
 
-		WordSearch wordSearch = new WordSearch();
+		WordSearchSolver wordSearch = new WordSearchSolver();
 
 		[TestInitialize]
 		public void Initialize()
@@ -77,7 +77,7 @@ namespace WordSearchTest
 		{
 			string expectedSanitizedInput = "THIS,IS,A,PUZZLE\nINPUT,TEST,STRING";
 
-			Assert.AreEqual(expectedSanitizedInput, new WordSearch().SanitizePuzzleInput("This, IS, A, PUZZLE\n INPUT, 7 TEST 3, STRING."));
+			Assert.AreEqual(expectedSanitizedInput, new WordSearchSolver().SanitizePuzzleInput("This, IS, A, PUZZLE\n INPUT, 7 TEST 3, STRING."));
 		}
 
 		[TestMethod]

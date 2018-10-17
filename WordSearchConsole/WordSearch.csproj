@@ -43,7 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WordSearch.cs" />
+    <Compile Include="WordSearchSolver.cs" />
+    <Compile Include="WordSearchConsole.cs" />
     <Compile Include="WordSearchMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

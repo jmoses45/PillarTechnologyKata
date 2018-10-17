@@ -57,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WordSearchConsole\WordSearchConsole.csproj">
+    <ProjectReference Include="..\WordSearchConsole\WordSearch.csproj">
       <Project>{f2269e81-6e0e-4723-9f32-d52bafb6d67c}</Project>
-      <Name>WordSearchConsole</Name>
+      <Name>WordSearch</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text.RegularExpressions;
 
-namespace WordSearchConsole
+namespace WordSearch
 {
-	public class WordSearch
+	public class WordSearchSolver
 	{
 		private string mSanitizedPuzzleInput = String.Empty;
 		private WordSearchPuzzle mWordSearchPuzzle = null;

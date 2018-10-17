@@ -2,13 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace WordSearchConsole
+namespace WordSearch
 {
 	public class WordSearchMain
 	{
+		static WordSearchConsole wordSearchConsole;
+
 		static void Main(string[] args)
 		{
-			
+			wordSearchConsole = new WordSearchConsole();
 		}
 	}
 }
