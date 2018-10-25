@@ -123,20 +123,20 @@ namespace WordSearchTest
 		}
 
 		[TestMethod]
-		public void WhenWordSearchIsPassedALetterPositionItReturnsNineNeighborLetters()
+		public void WhenWordSearchIsPassedALetterPositionItReturnsNineLetters()
 		{
-			List<NeighborLetter> actualNeighbors = wordSearch.GetNeighboringLetters(new Point(0, 0));
-			List<NeighborLetter> expectedNeighbors = new List<NeighborLetter>()
+			List<Letter> actualNeighbors = wordSearch.GetNeighboringLetters(new Point(0, 0));
+			List<Letter> expectedNeighbors = new List<Letter>()
 			{
-				new NeighborLetter(string.Empty, new Point(-1, -1)),
-				new NeighborLetter(string.Empty, new Point(0, -1)),
-				new NeighborLetter(string.Empty, new Point(1, -1)),
-				new NeighborLetter(string.Empty, new Point(-1, 0)),
-				new NeighborLetter("E", new Point(0, 0)),
-				new NeighborLetter("R", new Point(1, 0)),
-				new NeighborLetter(string.Empty, new Point(-1, 1)),
-				new NeighborLetter("F", new Point(0, 1)),
-				new NeighborLetter("K", new Point(1, 1))
+				new Letter(string.Empty, new Point(-1, -1)),
+				new Letter(string.Empty, new Point(0, -1)),
+				new Letter(string.Empty, new Point(1, -1)),
+				new Letter(string.Empty, new Point(-1, 0)),
+				new Letter("E", new Point(0, 0)),
+				new Letter("R", new Point(1, 0)),
+				new Letter(string.Empty, new Point(-1, 1)),
+				new Letter("F", new Point(0, 1)),
+				new Letter("K", new Point(1, 1))
 			};
 
 			CollectionAssert.AreEqual(expectedNeighbors, actualNeighbors);

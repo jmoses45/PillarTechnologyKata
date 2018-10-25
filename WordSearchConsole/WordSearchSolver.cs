@@ -54,11 +54,11 @@ namespace WordSearch
 			return result;
 		}
 
-		public List<NeighborLetter> GetNeighboringLetters(Point position)
+		public List<Letter> GetNeighboringLetters(Point position)
 		{
-			List<NeighborLetter> result = new List<NeighborLetter>();
+			List<Letter> result = new List<Letter>();
 
-			NeighborLetter neighborLetter;
+			Letter neighborLetter;
 
 			//Loop over neighboring positions
 			for (int i = -1; i < 2; i++)
@@ -66,7 +66,7 @@ namespace WordSearch
 				for (int j = -1; j < 2; j++)
 				{
 					//Create a new NeighborLetter object and set global position and letter.
-					neighborLetter = new NeighborLetter();
+					neighborLetter = new Letter();
 
 					//Find global position and add to neighborLetter
 					neighborLetter.position = new Point(position.X + j, position.Y + i);
@@ -154,7 +154,7 @@ namespace WordSearch
 			}
 			else
 			{
-				List<NeighborLetter> neighbors = GetNeighboringLetters(position);
+				List<Letter> neighbors = GetNeighboringLetters(position);
 				List<Point> neighborResult;
 
 				for (int i = 0; i < neighbors.Count; i++)
@@ -202,46 +202,7 @@ namespace WordSearch
 	}
 
 	//Class to hold neighbor data
-	public class NeighborLetter
-	{
-		private string mLetter;
-		private Point mPosition;
-
-		public string letter { get { return mLetter; } set { mLetter = value; } }
-		public Point position { get { return mPosition; } set { mPosition = value; } }
-
-		public NeighborLetter()
-		{
-
-		}
-
-		public NeighborLetter(string letter, Point position)
-		{
-			this.letter = letter;
-			this.position = position;
-		}
-
-		public override bool Equals(object obj)
-		{
-			bool result = false;
-
-			NeighborLetter neighborLetter = obj as NeighborLetter;
-
-			if ((neighborLetter != null) &&
-				this.letter.Equals(neighborLetter.letter) &&
-				this.position.Equals(neighborLetter.position))
-			{
-				result = true;
-			}
-
-			return result;
-		}
-
-		public override int GetHashCode()
-		{
-			return base.GetHashCode();
-		}
-	}
+	
 
 	//Class to hold word search data
 	public class WordSearchPuzzle
