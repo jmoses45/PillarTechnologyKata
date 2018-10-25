@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Letter.cs" />
+    <Compile Include="WordSearchPuzzle.cs" />
     <Compile Include="WordSearchSolver.cs" />
     <Compile Include="WordSearchConsole.cs" />
     <Compile Include="WordSearchMain.cs" />

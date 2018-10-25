@@ -200,15 +200,4 @@ namespace WordSearch
 			return result;
 		}
 	}
-
-	//Class to hold neighbor data
-	
-
-	//Class to hold word search data
-	public class WordSearchPuzzle
-	{
-		public string[] searchWords;
-		public string[][] searchField;
-	}
-
 }
