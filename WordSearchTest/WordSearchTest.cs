@@ -93,32 +93,6 @@ namespace WordSearchTest
 		}
 
 		[TestMethod]
-		public void WhenWordSearchIsPassedAStringLetterItWillReturnAListOfPositionsOfAllOccurrancesOfThatLetterInTheSearchField()
-		{
-			List<Point> actualPoints = wordSearch.GetAllPositionsOfLetter("E");
-			List<Point> expectedPoints = new List<Point>()
-			{
-				new Point(0, 0),
-				new Point(5, 1),
-				new Point(13, 1),
-				new Point(7, 2),
-				new Point(3, 4),
-				new Point(14, 4),
-				new Point(2, 11),
-				new Point(14, 12),
-				new Point(4, 14)
-			};
-
-			if (expectedPoints.Count != actualPoints.Count)
-				Assert.Fail();
-
-			for (int i = 0; i < expectedPoints.Count; i++)
-			{
-				Assert.AreEqual(expectedPoints[i], actualPoints[i]);
-			}
-		}
-
-		[TestMethod]
 		public void WhenWordSearchIsPassedALetterPositionItReturnsNineLetters()
 		{
 			List<Letter> actualNeighbors = wordSearch.GetNeighboringLetters(new Point(0, 0));

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace WordSearch
 {
@@ -25,35 +27,17 @@ namespace WordSearch
 			//Confirm word is not empty
 			if (word != string.Empty)
 			{
-				List<Point> startPositions = GetAllPositionsOfLetter(word[0].ToString());
+				var startPositions = mWordSearchPuzzle.searchField.SelectMany((row, i) => row.Select((value, j) => new { Row = i, Column = j, Letter = value })).
+														Where(x => x.Letter == word[0].ToString());
 
 				//Loop over start positions
-				for (int i = 0; i < startPositions.Count; i++)
+				foreach (var letter in startPositions)
 				{
 					//Start recursive function looking for whole word.
-					result = FindConnectingLetter(word, 0, startPositions[i], 4);
+					result = FindConnectingLetter(word, 0, new Point(letter.Column, letter.Row), 4);
 
 					if (result.Count > 0)
 						break;
-				}
-			}
-
-			return result;
-		}
-
-		public List<Point> GetAllPositionsOfLetter(string letter)
-		{
-			List<Point> result = new List<Point>();
-
-			if (mWordSearchPuzzle != null)
-			{
-				for (int i = 0; i < mWordSearchPuzzle.searchField.Length; i++)
-				{
-					for (int j = 0; j < mWordSearchPuzzle.searchField[i].Length; j++)
-					{
-						if (mWordSearchPuzzle.searchField[i][j] == letter)
-							result.Add(new Point(j, i));
-					}
 				}
 			}
 
