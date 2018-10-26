@@ -44,24 +44,24 @@ namespace WordSearchTest
 									  X,C,B,J,Y,G,S,C,V,N,N,F,C,Y,T
 									  G,I,Q,U,E,M,N,F,T,K,X,V,V,S,T";
 
-		WordSearchSolver wordSearch = new WordSearchSolver();
+		WordSearchSolver wordSearch;
 
 		[TestInitialize]
 		public void Initialize()
 		{
-			wordSearch.SetWordSearchPuzzle(testPuzzle);
+			wordSearch = new WordSearchSolver(testPuzzle);
 		}
 
 		[TestMethod]
 		public void WhenWordSearchIsPassedAStringPuzzleInputItReturnsAListOfStringSearchWords()
 		{
-			CollectionAssert.AreEqual(expectedSearchWords, wordSearch.GetSearchWords(testPuzzle));
+			CollectionAssert.AreEqual(expectedSearchWords, wordSearch.searchWords);
 		}
 
 		[TestMethod]
 		public void WhenWordSearchIsPassedAStringPuzzleInputItReturnsATwoDimensionalArrayOfASearchField()
 		{
-			string[][] actualSearchField = wordSearch.GetSearchField(testPuzzle);
+			string[][] actualSearchField = wordSearch.searchField;
 
 			//AreEqual will not work on jagged arrays must loop over arrays and compare them individually.
 			//First simple check on length to avoid array overruns.
@@ -77,23 +77,19 @@ namespace WordSearchTest
 		{
 			string expectedSanitizedInput = "THIS,IS,A,PUZZLE\nINPUT,TEST,STRING";
 
-			Assert.AreEqual(expectedSanitizedInput, new WordSearchSolver().SanitizePuzzleInput("This, IS, A, PUZZLE\n INPUT, 7 TEST 3, STRING."));
+			Assert.AreEqual(expectedSanitizedInput, new WordSearchPuzzle("This, IS, A, PUZZLE\n INPUT, 7 TEST 3, STRING.").sanitizedPuzzle);
 		}
 
 		[TestMethod]
 		public void WhenWordSearchIsPassedAStringPuzzleInputItWillSetItsWordSearchPuzzleMemberVariable()
 		{
-			WordSearchPuzzle expectedWordSearchPuzzle = new WordSearchPuzzle();
-			expectedWordSearchPuzzle.searchField = expectedSearchField;
-			expectedWordSearchPuzzle.searchWords = expectedSearchWords;
-
-			if (expectedWordSearchPuzzle.searchField.Length != wordSearch.wordSearchPuzzle.searchField.Length)
+			if (expectedSearchField.Length != wordSearch.wordSearchPuzzle.searchField.Length)
 				Assert.Fail();
 
-			for (int i = 0; i < expectedWordSearchPuzzle.searchField.Length; i++)
-				CollectionAssert.AreEqual(expectedWordSearchPuzzle.searchField[i], wordSearch.wordSearchPuzzle.searchField[i]);
+			for (int i = 0; i < expectedSearchField.Length; i++)
+				CollectionAssert.AreEqual(expectedSearchField[i], wordSearch.wordSearchPuzzle.searchField[i]);
 
-			CollectionAssert.AreEqual(expectedWordSearchPuzzle.searchWords, wordSearch.wordSearchPuzzle.searchWords);
+			CollectionAssert.AreEqual(expectedSearchWords, wordSearch.wordSearchPuzzle.searchWords);
 		}
 
 		[TestMethod]

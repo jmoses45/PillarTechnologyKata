@@ -225,8 +225,7 @@ namespace WordSearch
 			Console.WriteLine(puzzleInput);
 			Console.WriteLine();
 
-			WordSearchSolver wordSearch = new WordSearchSolver();
-			wordSearch.SetWordSearchPuzzle(puzzleInput);
+			WordSearchSolver wordSearch = new WordSearchSolver(puzzleInput);
 
 			string positionsOutput = string.Empty;
 			string[] searchWords = wordSearch.wordSearchPuzzle.searchWords;

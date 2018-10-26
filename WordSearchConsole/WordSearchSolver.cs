@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Text.RegularExpressions;
 
 namespace WordSearch
 {
@@ -10,7 +9,14 @@ namespace WordSearch
 		private string mSanitizedPuzzleInput = String.Empty;
 		private WordSearchPuzzle mWordSearchPuzzle = null;
 
-		public WordSearchPuzzle wordSearchPuzzle { get { return mWordSearchPuzzle; } set{ mWordSearchPuzzle = value; } }
+		public WordSearchPuzzle wordSearchPuzzle { get { return mWordSearchPuzzle; } }
+		public string[][] searchField { get { return wordSearchPuzzle.searchField; } }
+		public string[] searchWords { get { return wordSearchPuzzle.searchWords;  } }
+
+		public WordSearchSolver(string puzzleInput)
+		{
+			mWordSearchPuzzle = new WordSearchPuzzle(puzzleInput);
+		}
 
 		public List<Point> FindWordPositions(string word)
 		{
@@ -80,62 +86,6 @@ namespace WordSearch
 			}
 
 			return result;
-		}
-
-		public string[][] GetSearchField(string puzzleInput)
-		{
-			//Sanitize Input
-			puzzleInput = SanitizePuzzleInput(puzzleInput);
-
-			//Split input into rows by \n
-			string[] rows = puzzleInput.Split('\n');
-
-			//Initialize result array by row lenght - 1 to account for search words.
-			string[][] result = new string[rows.Length - 1][];
-
-			//Loop over rows to put into result. Start loop at index 1 to skip the search words.
-			for (int i = 1; i < rows.Length; i++)
-				result[i - 1] = rows[i].Split(',');
-
-			return result;
-		}
-
-		public string[] GetSearchWords(string puzzleInput)
-		{
-			//Sanitize Input
-			puzzleInput = SanitizePuzzleInput(puzzleInput);
-
-			//Get a substring of the puzzle input string consisting of the first row of characters
-			string firstRowSubstring = puzzleInput.Substring(0, puzzleInput.IndexOf('\n'));
-
-			//Split the substring by commas to get an array of search words
-			string[] result = firstRowSubstring.Split(',');
-			
-			//return the array of search words.
-			return result;
-		}
-
-		//Function to clean up any odd character in the puzzle input.
-		public string SanitizePuzzleInput(string puzzleInput)
-		{
-			if (mSanitizedPuzzleInput == String.Empty)
-			{
-				puzzleInput = puzzleInput.ToUpper();
-				mSanitizedPuzzleInput = Regex.Replace(puzzleInput, @"[^A-Z\n,]", String.Empty);
-			}
-
-			return mSanitizedPuzzleInput;
-		}
-
-		//Set the puzzle input on the word search object so it does not need to be passed in multiple times.
-		public void SetWordSearchPuzzle(string puzzleInput)
-		{
-			//Sanitize Input
-			puzzleInput = SanitizePuzzleInput(puzzleInput);
-
-			mWordSearchPuzzle = new WordSearchPuzzle();
-			mWordSearchPuzzle.searchField = GetSearchField(puzzleInput);
-			mWordSearchPuzzle.searchWords = GetSearchWords(puzzleInput);
 		}
 
 		//Recursive function to check letter connections
